@@ -14,13 +14,13 @@ WORKDIR /Dice-Rolling-Stimulator
 COPY . /Dice-Rolling-Stimulator
 
 # Remove the default Nginx configuration file
-RUN rm /etc/nginx/nginx.conf
+#RUN rm /etc/nginx/nginx.conf
 
 # Copy the custom Nginx configuration file
-COPY nginx.conf /etc/nginx/
+#COPY nginx.conf /etc/nginx/
 
 # Expose port 80 for the Nginx server
 EXPOSE 80
 
 # Start Nginx and the Python application
-CMD service nginx start && python main.py
+CMD python main.py
