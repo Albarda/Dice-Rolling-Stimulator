@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dice-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dice
+  template:
+    metadata:
+      labels:
+        app: dice
+    spec:
+      containers:
+      - name: dice
+        image: my-registry/dice-app:latest
+        ports:
+        - containerPort: 80
