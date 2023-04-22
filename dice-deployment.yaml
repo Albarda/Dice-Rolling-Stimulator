@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: dice
-        image: my-registry/dice-image:latest
+        image: Dice-Rolling-Stimulator/dice-image:latest
         ports:
         - containerPort: 80
