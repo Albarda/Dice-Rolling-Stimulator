@@ -15,5 +15,6 @@ spec:
       containers:
       - name: dice
         image: dice-image:latest
+        imagePullPolicy: IfNotPresent # Add this line
         ports:
         - containerPort: 80
