@@ -1,4 +1,5 @@
 import random
+import time
 
 print("Dice Rolling Stimulator\n")
 x = 'y'
@@ -47,4 +48,4 @@ while x == 'y':
         print("| O     O |")
         print("-----------")
 
-    x = input("Press 'y' to input Again:\n")
+    time.sleep(5) # wait for 5 seconds before rolling again
