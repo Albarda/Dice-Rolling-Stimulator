@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: nginx-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: nginx
@@ -12,10 +12,39 @@ spec:
       labels:
         app: nginx
     spec:
+      volumes:
+        - name: nginx-volume
+          persistentVolumeClaim:
+            claimName: nginx-pvc
       containers:
       - name: nginx
-        image: nginx
+        image: nginx-image:latest
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
-      nodeSelector:
-        kubernetes.io/hostname: minikube
+        volumeMounts:
+        - name: nginx-volume
+          mountPath: /usr/share/nginx/html
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.1"
+            memory: "256Mi"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          failureThreshold: 10
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          failureThreshold: 3
+

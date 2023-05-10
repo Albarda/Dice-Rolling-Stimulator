@@ -1,0 +1,8 @@
+# Dockerfile-backend
+FROM nginx:latest
+
+# Copy your Nginx configuration file to the image
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Expose the required port for Nginx
+EXPOSE 80
